@@ -1,7 +1,18 @@
 {
-  "description" : "Address resolution pipeline",
-  "docker" : "debian:11",
-  "git" : "https://github.com/openfido/address.git",
-  "branch" : "main",
-  "script" : "openfido.sh"
+  "name": "Location Resolution",
+  "description": "resolving differences in location type",
+  "docker": "slacgismo/gridlabd:develop",
+  "git": "https://github.com/isabellekcobb/zipcodeconvert.git",
+  "branch": "main",
+  "script": "openfido.sh",
+  "manual": {
+    "config": "csv"
+  },
+  "config": {
+    "LOCATION_DATA": {
+      "prompt": "Include location data (csv/xls)",
+      "description": "Location data, csv/xls",
+      "default": "",
+      "input_type": "upload"
+    }
 }
