@@ -27,6 +27,16 @@ apt-get -q -y update > /dev/null
 apt-get -q -y install python3 python3-pip > /dev/null
 python3 -m pip install -q -r requirements.txt > /dev/null
 
+# process config file
+if [ -e "config.csv" ]; then
+    LOCATION_DATA=$(grep ^LOCATION_DATA, "config.csv" | cut -f2- -d, | tr ',' ' ')
+    echo "Config settings:"
+    echo "  LOCATION_DATA = ${LOCATION_DATA:-}"
+else
+    echo "No 'config.csv', using default settings:"
+    echo "LOCATION_DATA = "
+fi
+
 echo '*** INPUTS ***'
 ls -l $OPENFIDO_INPUT
 
