@@ -17,20 +17,6 @@ set -x # print commands
 set -e # exit on error
 set -u # nounset enabled
 
-if [ ! -f "/usr/local/bin/gridlabd" ]; then
-    echo "ERROR [openfido.sh]: '/usr/local/bin/gridlabd' not found" > /dev/stderr
-    error
-elif [ ! -f "$OPENFIDO_INPUT/config.csv" ]; then
-    OPTIONS=$(cd $OPENFIDO_INPUT; ls -1 | tr '\n' ' ')
-    if [ ! -z "$OPTIONS" ]; then
-        echo "WARNING [openfido.sh]: '$OPENFIDO_INPUT/config.csv' not found, using all input files by default" > /dev/stderr
-    else
-        echo "ERROR [openfido.sh]: no input files"
-        error
-    fi
-else
-    OPTIONS=$(cd $OPENFIDO_INPUT ; cat config.csv | tr '\n' ' ')
-fi
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get -q -y update > /dev/null
